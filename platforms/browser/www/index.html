@@ -1,0 +1,223 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+    <head>
+         <title>Events Gooo</title>
+         <meta charset=utf-8 />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      <script type='text/javascript' src='js/jquery-2.1.1.js'></script> 
+<script>
+    $(document).bind('mobileinit',function(){
+        $.mobile.changePage.defaults.changeHash = false;
+        $.mobile.hashListeningEnabled = false;
+        $.mobile.pushStateEnabled = false;
+    });
+    
+$(function(){
+      $("#submit").click(function(){
+
+      alert("gghg");
+    });
+       
+        $("#saveData").click(function(e){
+          //preventDefault();
+          e.preventDefault();
+          localStorage.setItem("flag","set");
+          //$(".range").each(function(i,elem){
+            //console.log( "val",elem); });
+          var dataF = $("#form1").serializeArray();
+          //console.log(dataF);
+          $.each(dataF, function (index, obj) {
+          //$.each(dataF, function(i, obj){
+            localStorage.setItem(obj.name, obj.value);
+            //console.log(obj);
+          });
+        });
+        if(localStorage.getItem("flag")=="set") {
+           var dataF = $("#form1").serializeArray();
+           //$.each(dataF, function(index, obj){
+          $.each(dataF, function (index, obj) {
+            $("[name='"+obj.name +"']").val(localStorage.getItem(obj.name));
+            //localStorage.setItem(obj.name, obj.value);
+            //console.log(i, obj);
+          });
+        }
+        $("#clearData")
+          .click(function(e) {
+            e.preventDefault();
+            localStorage.setItem("flag","set");
+          })
+  
+});
+</script>   
+
+  <script type='text/javascript' src='js/jquery.mobile-1.4.5.js'></script> 
+  <script type='text/javascript' src='js/nativedroid2.js'></script> 
+  
+  <link rel="stylesheet" href="css/jquery.mobile.custom.structure.css">
+  <link rel="stylesheet" href="css/jquery.mobile.custom.theme.css">
+  <link rel="stylesheet" href="css/material-design-iconic-font.min.css">
+  <link rel="stylesheet" href="css/nativedroid2.color.blue-grey.css">
+  <link rel="stylesheet" href="css/nativedroid2.css">
+  <link rel="stylesheet"  href="http://code.jquery.com/mobile/git/jquery.mobile-git.css" /> 
+  <link rel="stylesheet" href="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.css" />
+  <script type="text/javascript" src="jquery.timepicker.js"></script>
+  <link rel="stylesheet" type="text/css" href="jquery.timepicker.css" />
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script> 
+  <script src="https://rawgithub.com/jquery/jquery-ui/1-10-stable/ui/jquery.ui.datepicker.js"></script>
+  <script src="http://code.jquery.com/mobile/git/jquery.mobile-git.js"></script> 
+  <script src="https://rawgithub.com/arschmitz/jquery-mobile-datepicker-wrapper/master/jquery.mobile.datepicker.js"></script>
+  <script type="text/javascript">
+$(document).ready(function () {
+    function init() {
+        if (localStorage["distanceR"]) {
+            $('#distanceR').val(localStorage["distanceR"]);
+        }
+        if (localStorage["startDate"]) {
+            $('#startDate').val(localStorage["startDate"]);
+        }
+        if (localStorage["endDate"]) {
+            $('#endDate').val(localStorage["endDate"]);
+        }
+        if (localStorage["checkFree"]) {
+            $('#checkFree').val(localStorage["checkFree"]);
+        }
+        if (localStorage["checkPaid"]) {
+            $('#checkPaid').val(localStorage["checkPaid"]);
+        }
+        if (localStorage["costR"]) {
+            $('#costR').val(localStorage["costR"]);
+        }
+    }
+    init();
+});
+
+$('.stored').keyup(function () {
+    localStorage[$(this).attr('distanceR')] = $(this).val();
+});
+$('.stored').keyup(function () {
+    localStorage[$(this).attr('startDate')] = $(this).val();
+});
+$('.stored').keyup(function () {
+    localStorage[$(this).attr('endDate')] = $(this).val();
+});
+$('.stored').keyup(function () {
+    localStorage[$(this).attr('checkFree')] = $(this).val();
+});
+$('.stored').keyup(function () {
+    localStorage[$(this).attr('checkPaid')] = $(this).val();
+});
+$('.stored').keyup(function () {
+    localStorage[$(this).attr('costR')] = $(this).val();
+});
+
+//$('#localStorageTest').submit(function() {
+//    localStorage.clear();
+//});
+</script>
+
+  
+ </head>
+    <body>
+       <header>
+        <h1><a href="https://github.com/jonthornton/jquery-timepicker">jquery.timepicker</a></h1>
+        <p class="body-text">
+            A lightweight, customizable javascript timepicker plugin for jQuery inspired by Google Calendar.
+        </p>
+        <ul id="header-links">
+            <li><a href="https://github.com/jonthornton/jquery-timepicker#timepicker-plugin-for-jquery">Documentation</a></li>
+            <li><a href="https://github.com/jonthornton/jquery-timepicker">Source code on GitHub</a></li>
+            <li><a href="https://github.com/jonthornton/jquery-timepicker/zipball/master">Download (zip)</a></li>
+            <li><a href="https://github.com/jonthornton/jquery-timepicker/issues?state=open">Help</a></li>
+        </ul>
+    </header>
+    <div data-role="page" id="pagetwo">
+      <div data-role="header">
+        <h1>Sort!!!</h1>
+      </div>
+      <div data-role="main" class="ui-content">
+        <form id="form1" name="form1">
+          <p1>Select the event distance range (miles) from your current location</p1>
+          <input type="range" name="distanceR" id="distanceR" data-highlight="true" min="0" max="100" value="1" class="range">
+          <div class="ui-grid-a">
+            <div class="ui-block-a"><div class="ui-bar ui-bar-a" style="height:60px">Enter the start date</div></div>
+              <div class="ui-block-b"><div class="ui-bar ui-bar-a" style="height:60px"><div data-role="content">  
+                <input type="text" name="startDate" id="startDate" data-inline="false" data-role="date">
+              </div><!-- /content --></div></div>
+            </div><!-- /grid-a -->
+          <div class="ui-grid-a">
+            <div class="ui-block-a">
+              <div class="ui-bar ui-bar-a" style="height:60px">Enter the end date
+              </div>
+            </div>
+            <div class="ui-block-b">
+              <div class="ui-bar ui-bar-a" style="height:60px">
+                <div data-role="content">  
+                  <input type="text" name="endDate" id="endDate" data-inline="false" data-role="date">
+                </div><!-- /content -->
+              </div>
+            </div>
+          </div><!-- /grid-a -->
+            <p1>Enter the end time</p1>
+            <p1>Enter the end time</p1>
+            <p1>Cost of event in $</p1>
+            <label>
+              <input type="checkbox" name="checkFree" id="checkFree">Free
+            </label>
+            <label>
+              <input type="checkbox" name="checkPaid" id="CheckPaid">Paid
+            </label>
+            <input type="range" name="costR" id="costR" data-highlight="true" min="0" max="1000" value="50" class="range">
+            <input type="submit" value="Save form" id="saveData">
+            <input type="submit" value="Submit" id="submit">
+            <input type="submit" value="Clear" id="clearData">
+            <input type="reset" value="Reset">
+        </form>
+      </div>
+
+
+<script type="text/javascript">
+(function( win ){
+  var doc = win.document;
+    
+  // If there's a hash, or addEventListener is undefined, stop here
+  if( !location.hash && win.addEventListener ){
+    //scroll to 1
+    window.scrollTo( 0, 1 );
+    var scrollTop = 1,
+      getScrollTop = function(){
+        return win.pageYOffset || doc.compatMode === "CSS1Compat" && doc.documentElement.scrollTop || doc.body.scrollTop || 0;
+      },
+      //reset to 0 on bodyready, if needed
+      bodycheck = setInterval(function(){
+        if( doc.body ){
+          clearInterval( bodycheck );
+          scrollTop = getScrollTop();
+          win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+        } 
+      }, 15 );
+    win.addEventListener( "load", function(){
+      setTimeout(function(){
+          //reset to hide addr bar at onload
+          win.scrollTo( 0, scrollTop === 1 ? 0 : 1 );
+      }, 0);
+    } );
+  }
+})( this );
+</script>
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-3753241-1");
+pageTracker._initData();
+pageTracker._trackPageview();
+</script>
+
+    <div data-role="footer">
+      <h1>Footer Text</h1>
+    </div>
+  </div> 
+</body>
+</html>
